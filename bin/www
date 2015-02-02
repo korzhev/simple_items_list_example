@@ -1,0 +1,9 @@
+var log = require('../libs/logger')(module),
+    config = require('../config'),
+    app = require('../app');
+
+app.set('port', config.server.port);
+
+var server = app.listen(app.get('port'), function() {
+  log.info('Express server listening on port ' + server.address().port);
+});

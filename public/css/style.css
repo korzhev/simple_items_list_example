@@ -1,0 +1,20 @@
+ul {
+    padding: 0;
+}
+li{
+    list-style-type: none;
+    display: inline-block;
+}
+.itemsList > li {
+    margin: 0px 0px 10px 5px;
+    padding: 7px;
+}
+.itemCategories > li {
+    margin: 2px;
+}
+/*img {*/
+    /*border-radius: 3px;*/
+    /*border: 3px solid #CACACA;*/
+    /*-webkit-box-shadow: 0 0 10px rgba(182, 182, 182, 0.5);*/
+    /*box-shadow: 0 0 10px rgba(182, 182, 182, 0.5);*/
+/*}*/

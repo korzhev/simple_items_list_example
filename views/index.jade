@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  .well
+    h3='Our products are awesome!'
+    if products && products.length
+      ul.itemsList
+        each product in products
+          li.panel.panel-default
+            a.thumbnail(href='#'): img(src='#{product.image}')
+            p Name:
+              span.label.label-primary #{product.name}
+            p Price:
+              - var fixedPrice = product.price.toFixed(2);
+              span.label.label-info #{fixedPrice} £
+            p Merchant:
+              //- ready for filter by merchant
+              a.btn.btn-warning.btn-xs(href='#merchant='+'#{product._merchant.id}') #{product._merchant.name}
+            p Categories:
+              ul.itemCategories
+                each category in product.categories
+                  //- ready for filter by category
+                  li: a.btn.btn-primary.btn-xs(href='#category=' + '#{category.id}') #{category.name}
+      nav
+        ul.pagination
+          li
+            a(href='?page=1')
+              span='First'
+          if prevPage
+            li
+              a(href='?page=' + '#{prevPageNumber}')
+                span='Prev'
+          else
+            li.disabled
+              a(href='#')
+                span='Prev'
+          each pageNumber in pageList
+            if pageNumber == page
+              li.active
+                a(href='?page=' + '#{pageNumber}')
+                  span #{pageNumber}
+            else
+              li
+                a(href='?page=' + '#{pageNumber}')
+                  span #{pageNumber}
+          if nextPage
+            li
+              a(href='?page=' + '#{nextPageNumber}')
+                span='Next'
+          else
+            li.disabled
+              a(href='#')
+                span='Next'
+          li
+            a(href='?page=' + '#{maxPage}')
+              span='Last'
+    else
+      .noContent.alert.alert-danger
+        p='There is no products '
+          i.fa.fa-frown-o
